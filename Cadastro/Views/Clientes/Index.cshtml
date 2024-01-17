@@ -1,0 +1,66 @@
+﻿@model IEnumerable<Cadastro.Models.Cliente>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<p>
+    <a asp-action="Create">Novo Cliente</a>
+</p>
+
+<form asp-controller="Clientes" asp-action="Index" method="get">
+    <p>
+        <h6>Buscar Cliente</h6>
+        Nome: <input type="text" name="filtro" />
+        <br>
+        <br>
+        Estado: <input type="text" name="filtro2" />
+        <br>
+        <br>
+        <input type="submit" value="Filtro" />
+    </p>
+</form>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Nome)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Cidade)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UF)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nome)
+            </td>
+             <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+             <td>
+                @Html.DisplayFor(modelItem => item.Cidade)
+            </td>
+             <td>
+                @Html.DisplayFor(modelItem => item.UF)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.ID">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.ID">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.ID">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
